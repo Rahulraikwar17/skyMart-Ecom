@@ -20,7 +20,7 @@ const HomeWelcomeCard = () => {
           : "Good Evening";
 
   return (
-    <section className="w-full group px-3 sm:px-6 py-5">
+    <section className="w-full group px-3 max-[769px]:p-1.5 py-5">
       <div className="relative overflow-hidden rounded-[30px] border border-[#C1443A]/30 bg-[#3D1F1A]">
 
         <video
@@ -69,7 +69,7 @@ const HomeWelcomeCard = () => {
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row lg:flex-col items-stretch sm:items-start lg:items-end gap-4 flex-wrap">
+          <div className="flex flex-col sm:flex-row lg:flex-col max-[769px]:hidden items-stretch sm:items-start lg:items-end gap-4 flex-wrap">
             <div className="w-full sm:w-[240px] rounded-2xl border border-[#F87060]/30 bg-[#F87060]/10 backdrop-blur-xl p-4 shadow-[0_8px_32px_rgba(0,0,0,0.4)] transition hover:-translate-y-1">
               <div className="text-2xl font-bold text-[#F87060]">FLAT</div>
 

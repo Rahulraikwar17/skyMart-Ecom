@@ -66,8 +66,8 @@ export default function StatsBar() {
   ];
 
   return (
-    <div className="w-full  px-6 py-8">
-      <div className="w-full px-7 mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div className="w-full max-[769px]:p-0">
+      <div className="w-full px-7 max-[769px]:p-2 mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {stats.map(({ icon: Icon, value, label, sub, color, bg, glow }) => (
           <div
             key={label}

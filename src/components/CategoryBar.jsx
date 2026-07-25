@@ -38,13 +38,13 @@ const CategoryBar = () => {
   ];
 
   return (
-    <div className="w-full p-6">
+    <div className="w-full max-[426px]:p-2 p-6">
       <div className="flex w-full flex-wrap gap-4 justify-center">
         {categories.map(({ icon: Icon, label, value, count }) => (
           <div
             key={label}
             onClick={() => navigate(`/main/product?category=${value}`)}
-            className="group flex bg-[#3D1F1A] items-center justify-between gap-3 rounded-2xl border p-3 pr-6 min-w-[250px] transition-all border border-[#C1443A]/20 duration-200
+            className="group flex bg-[#3D1F1A] items-center justify-between max-[px]:w-[400px] gap-3 rounded-2xl border p-3 pr-6 min-w-[250px] max-[426px]:w-[100%] transition-all border border-[#C1443A]/20 duration-200
              cursor-pointer
              hover:border-[#F87060]
                  hover:shadow-[0_0_20px_2px_rgba(248,112,96,0.35)]"
