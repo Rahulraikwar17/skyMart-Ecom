@@ -33,9 +33,9 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen w-[40%] max-[769px]:w-[100%] max-[769px]:w-[100%] bg-[#1F0F0C] flex items-center justify-center px-5">
-      <div className="w-full rounded-3xl border border-[#C1443A]/30 bg-[#2A1712] shadow-2xl p-10">
-        <h1 className="text-5xl font-bold text-white">Sign in</h1>
+    <div className="min-h-screen w-[40%] max-[769px]:w-[100%] max-[769px]:w-[100%] bg-[#1F0F0C] flex items-center justify-center px-5 max-[426px]:p-2">
+      <div className="w-full rounded-3xl border border-[#C1443A]/30 bg-[#2A1712] shadow-2xl p-10 max-[426px]:p-2">
+        <h1 className="text-5xl font-bold text-white max-[426px]:p-4">Sign in</h1>
 
         <p className="text-[#FFA98F]/60 mt-3 text-lg">
           Enter your credentials to continue
@@ -52,7 +52,7 @@ const LoginPage = () => {
               {...register("email", { required: "email is required" })}
               type="email"
               placeholder="Email address"
-              className="w-full h-16 rounded-2xl bg-[#3D1F1A] border border-[#C1443A]/30 pl-14 pr-5 text-white placeholder:text-[#FFA98F]/50 outline-none focus:border-[#F87060] focus:ring-4 focus:ring-[#F87060]/20 transition"
+              className="w-full h-16 rounded-2xl bg-[#3D1F1A] border border-[#C1443A]/30 pl-14 pr-5  text-white placeholder:text-[#FFA98F]/50 outline-none focus:border-[#F87060] focus:ring-4 focus:ring-[#F87060]/20 transition"
             />
             {errors.email && (
               <p className="text-red-500">{errors.email.message}</p>

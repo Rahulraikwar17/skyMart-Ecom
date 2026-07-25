@@ -44,7 +44,7 @@ const RegisterPage = () => {
 
   return (
     <div className="min-h-screen w-[40%] max-[769px]:w-[100%] max-[769px]:w-[100%] max-[1476px]:w-[60%]  bg-[#1F0F0C] flex items-center justify-center px-5 py-10 overflow-hidden relative">
-      <div className="relative w-full h-full max-w-xl rounded-3xl border border-[#C1443A]/30 bg-[#2A1712]/90 backdrop-blur-xl p-5 shadow-[0_0_60px_rgba(0,0,0,.45)]">
+      <div className="relative w-full h-full max-w-xl rounded-3xl border border-[#C1443A]/30 bg-[#2A1712]/90 max-[426px]:p-2 backdrop-blur-xl p-5 shadow-[0_0_60px_rgba(0,0,0,.45)]">
         <h1 className="text-5xl font-bold text-white">Create account</h1>
 
         <p className="text-[#FFA98F]/60 mt-3 text-lg">
