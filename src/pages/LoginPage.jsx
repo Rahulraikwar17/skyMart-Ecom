@@ -33,7 +33,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen w-[40%] bg-[#1F0F0C] flex items-center justify-center px-5">
+    <div className="min-h-screen w-[40%] max-[769px]:w-[100%] max-[769px]:w-[100%] bg-[#1F0F0C] flex items-center justify-center px-5">
       <div className="w-full rounded-3xl border border-[#C1443A]/30 bg-[#2A1712] shadow-2xl p-10">
         <h1 className="text-5xl font-bold text-white">Sign in</h1>
 

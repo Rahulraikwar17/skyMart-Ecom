@@ -6,65 +6,77 @@ import shoes from "../assets/shoes.webp";
 
 const AuthBranding = () => {
   return (
-    <section className="hidden lg:block relative lg:w-[60%] overflow-hidden bg-[#1F0F0C] text-white min-h-screen border-r border-[#F87060]/30 p-2.5">
+    <section className="max-[769px]:hidden relative  overflow-hidden bg-[#1F0F0C] text-white min-h-screen border-r border-[#F87060]/30 p-2.5">
       <div className="absolute left-[-250px] top-32 h-[550px] w-[550px] rounded-full bg-[#F87060]/20 blur-[170px]" />
 
       <div className="absolute right-[-180px] bottom-20 h-[500px] w-[500px] rounded-full bg-[#F87060]/10 blur-[160px]" />
 
       <div className="absolute right-24 top-12 h-[700px] w-[700px] rounded-full border border-[#F87060]/20" />
 
-      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 items-center min-h-screen px-10">
+      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 items-center min-h-screen px-6 xl:px-10 gap-6">
         <div>
-          <div className="inline-flex items-center gap-3 rounded-full border border-[#F87060]/30 bg-[#2A1712] px-5 py-3">
-            <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#F87060]">
+          <div className="inline-flex items-center gap-3 rounded-full border border-[#F87060]/30 bg-[#2A1712] px-4 xl:px-5 py-2.5 xl:py-3">
+            <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#F87060] shrink-0">
               <Zap className="text-[#1F0F0C]" size={16} fill="#1F0F0C" />
             </div>
 
-            <p className="text-sm text-[#FFA98F]/80">
+            <p className="text-xs xl:text-sm text-[#FFA98F]/80">
               Trusted by{" "}
               <span className="text-white font-semibold">50,000+</span> users
             </p>
           </div>
 
-          <h1 className="mt-12 text-5xl xl:text-7xl font-black leading-none">
+          <h1 className="mt-8 xl:mt-12 text-4xl xl:text-7xl font-black leading-none">
             Shop the future.
             <br />
             <span className="text-[#F87060]">Today.</span>
           </h1>
 
-          <p className="mt-8 text-[#FFA98F]/70 text-base xl:text-xl leading-8 xl:leading-9 max-w-xl">
+          <p className="mt-6 xl:mt-8 text-[#FFA98F]/70 text-sm xl:text-xl leading-7 xl:leading-9 max-w-xl">
             Thousands of premium products, lightning-fast delivery, and prices
             that make your wallet happy.
           </p>
 
-          <div className="mt-12 xl:mt-20 flex gap-4 xl:gap-6">
-            <div className="w-40 xl:w-64 rounded-md border border-[#C1443A]/30 bg-[#2A1712]/60 p-5 xl:p-7">
-              <Box className="text-[#F87060]" />
+          <div className="mt-8 xl:mt-20 flex gap-3 xl:gap-6">
+            <div className="w-32 xl:w-64 rounded-md border border-[#C1443A]/30 bg-[#2A1712]/60 p-4 xl:p-7">
+              <Box className="text-[#F87060]" size={18} />
 
-              <h2 className="mt-6 xl:mt-8 text-3xl xl:text-5xl font-bold">20K+</h2>
+              <h2 className="mt-4 xl:mt-8 text-2xl xl:text-5xl font-bold">
+                20K+
+              </h2>
 
-              <p className="mt-3 text-[#FFA98F]/70 text-sm xl:text-base">Products</p>
+              <p className="mt-2 xl:mt-3 text-[#FFA98F]/70 text-xs xl:text-base">
+                Products
+              </p>
             </div>
 
-            <div className="w-32 xl:w-44 rounded-md border border-[#C1443A]/30 bg-[#2A1712]/60 p-5 xl:p-7">
-              <Users className="text-[#F87060]" />
+            <div className="w-28 xl:w-44 rounded-md border border-[#C1443A]/30 bg-[#2A1712]/60 p-4 xl:p-7">
+              <Users className="text-[#F87060]" size={18} />
 
-              <h2 className="mt-6 xl:mt-8 text-3xl xl:text-5xl font-bold">50K+</h2>
+              <h2 className="mt-4 xl:mt-8 text-2xl xl:text-5xl font-bold">
+                50K+
+              </h2>
 
-              <p className="mt-3 text-[#FFA98F]/70 text-sm xl:text-base">Happy Users</p>
+              <p className="mt-2 xl:mt-3 text-[#FFA98F]/70 text-xs xl:text-base">
+                Happy Users
+              </p>
             </div>
 
-            <div className="w-32 xl:w-44 rounded-md border border-[#C1443A]/30 bg-[#2A1712]/60 p-5 xl:p-7">
-              <Star className="text-[#F87060] fill-[#F87060]" />
+            <div className="w-28 xl:w-44 rounded-md border border-[#C1443A]/30 bg-[#2A1712]/60 p-4 xl:p-7">
+              <Star className="text-[#F87060] fill-[#F87060]" size={18} />
 
-              <h2 className="mt-6 xl:mt-8 text-3xl xl:text-5xl font-bold">4.9</h2>
+              <h2 className="mt-4 xl:mt-8 text-2xl xl:text-5xl font-bold">
+                4.9
+              </h2>
 
-              <p className="mt-3 text-[#FFA98F]/70 text-sm xl:text-base">Rating</p>
+              <p className="mt-2 xl:mt-3 text-[#FFA98F]/70 text-xs xl:text-base">
+                Rating
+              </p>
             </div>
           </div>
         </div>
 
-        <div className="relative h-[90%]">
+        <div className="relative hidden xl:block h-[90%]">
           <div className="absolute right-16 top-8 rotate-[12deg] rounded-[32px] border border-white/10 bg-white/5 backdrop-blur-xl p-6">
             <Heart size={18} className="absolute right-5 top-5 text-white" />
 
@@ -98,6 +110,24 @@ const AuthBranding = () => {
           <div className="absolute left-36 top-6 h-4 w-4 rounded-full bg-[#F87060] shadow-[0_0_70px_25px_rgba(248,112,96,0.5)]" />
 
           <div className="absolute left-56 -bottom-2 h-4 w-4 rounded-full bg-[#F87060] shadow-[0_0_70px_25px_rgba(248,112,96,0.5)]" />
+        </div>
+
+        <div className="flex xl:hidden flex-col gap-4 mt-6">
+          <div className="rotate-[3deg] rounded-[28px] border border-white/10 bg-white/5 backdrop-blur-xl p-4 flex items-center gap-4 max-w-xs">
+            <img src={headphone} className="w-16 shrink-0" />
+            <div>
+              <p className="text-sm">Wireless Headphones</p>
+              <h3 className="text-[#F87060] text-lg font-bold">$59.99</h3>
+            </div>
+          </div>
+
+          <div className="-rotate-[3deg] rounded-[28px] border border-white/10 bg-white/5 backdrop-blur-xl p-4 flex items-center gap-4 max-w-xs">
+            <img src={watch} className="w-16 shrink-0" />
+            <div>
+              <p className="text-sm">Analog Watch</p>
+              <h3 className="text-[#F87060] text-lg font-bold">$129.99</h3>
+            </div>
+          </div>
         </div>
       </div>
     </section>
