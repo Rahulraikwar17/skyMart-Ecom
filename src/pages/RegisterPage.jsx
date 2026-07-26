@@ -1,171 +1,221 @@
-import React, { useContext, useState } from "react";
-import { User, Mail, Lock, Eye, EyeOff, ArrowRight } from "lucide-react";
-import { useNavigate } from "react-router";
-import { set, useForm } from "react-hook-form";
-import { Auth } from "../context/AuthContext";
-import { toast } from "react-toastify";
+import axios from "axios";
+import React, { useContext, useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router";
+import Loader from "../components/Loader";
+import ProductCard from "../components/ProductCard";
+import { CartContext } from "../context/CartContext";
+import { Lock, Undo2, Van } from "lucide-react";
 
-const RegisterPage = () => {
+export default function ProductDetailsPage() {
+  const { id } = useParams();
   const navigate = useNavigate();
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const { registeredUsers, setRegisteredUsers, setLoggedInUser } =
-    useContext(Auth);
-  const {
-    register,
-    handleSubmit,
-    reset,
-    watch,
-    formState: { errors },
-  } = useForm();
+  const { addToCart } = useContext(CartContext);
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const password = watch("password");
-  let formSubmit = (data) => {
-    let alreadyExist = registeredUsers.find((val) => {
-      return val.email === data.email;
-    });
-    if (alreadyExist) {
-      toast.error("This email is already registered.");
-      reset();
-      return;
+  const [relatedProducts, setRelatedProducts] = useState([]);
+  const [relatedLoading, setRelatedLoading] = useState(false);
+
+  const getProduct = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+
+      const res = await axios(`https://fakestoreapi.com/products/${id}`);
+      setProduct(res.data);
+    } catch (error) {
+      console.log("single product fetch for product detail", error);
+      setError("Product not found");
+    } finally {
+      setLoading(false);
     }
+  };
 
-    toast.success("User Registerred succesfully");
-    data.id = Date.now();
-    let arr = [...registeredUsers, data];
+  useEffect(() => {
+    getProduct();
+  }, [id]);
 
-    setRegisteredUsers(arr);
-    localStorage.setItem("registeredUsers", JSON.stringify(arr));
-    setLoggedInUser(data);
-    localStorage.setItem("loggedInUser", JSON.stringify(data));
-    navigate("/main");
-    reset();
+  useEffect(() => {
+    if (!product?.category) return;
+
+    const getRelatedProducts = async () => {
+      try {
+        setRelatedLoading(true);
+
+        const res = await axios(
+          `https://fakestoreapi.com/products/category/${product.category}`,
+        );
+
+        const filtered = res.data
+          .filter((item) => item.id !== product.id)
+          .slice(0, 4);
+
+        setRelatedProducts(filtered);
+      } catch (error) {
+        console.log("related products fetch", error);
+        setRelatedProducts([]);
+      } finally {
+        setRelatedLoading(false);
+      }
+    };
+
+    getRelatedProducts();
+  }, [product?.category, product?.id]);
+
+  if (loading) {
+    return <Loader />;
+  }
+
+  if (error || !product) {
+    return (
+      <div className="min-h-screen bg-[#03045E] text-white flex flex-col items-center justify-center gap-4">
+        <p className="text-xl text-red-400">{error || "Product not found"}</p>
+        <button
+          onClick={() => navigate(-1)}
+          className="px-6 py-2.5 bg-white text-[#03045E] rounded-full font-medium hover:bg-gray-200 transition"
+        >
+          Go Back
+        </button>
+      </div>
+    );
+  }
+
+  const renderStars = (rate = 0) => {
+    const stars = [];
+    for (let i = 1; i <= 5; i++) {
+      stars.push(
+        <span
+          key={i}
+          className={
+            i <= Math.round(rate) ? "text-yellow-400" : "text-[#0077B6]/40"
+          }
+        >
+          ★
+        </span>,
+      );
+    }
+    return stars;
   };
 
   return (
-    <div className="min-h-screen w-[40%] max-[769px]:w-[100%] max-[769px]:w-[100%] max-[1476px]:w-[60%]  bg-[#1F0F0C] flex items-center justify-center px-5 py-10 overflow-hidden relative">
-      <div className="relative w-full h-full max-w-xl rounded-3xl border border-[#C1443A]/30 bg-[#2A1712]/90 max-[426px]:p-2 backdrop-blur-xl p-5 shadow-[0_0_60px_rgba(0,0,0,.45)]">
-        <h1 className="text-5xl font-bold text-white">Create account</h1>
+    <div className="min-h-screen bg-[#03045E] text-white">
+      <div className="max-w-6xl mx-auto px-6 pt-8">
+        <button
+          onClick={() => navigate(-1)}
+          className="text-sm text-[#90E0EF]/60 hover:text-white transition flex items-center gap-1"
+        >
+          ← Back to products
+        </button>
+      </div>
 
-        <p className="text-[#FFA98F]/60 mt-3 text-lg">
-          Join SkyMart and start shopping
-        </p>
-
-        <form onSubmit={handleSubmit(formSubmit)} className="mt-10 space-y-4 ">
-          <div className="relative">
-            <User
-              size={20}
-              className="absolute left-5 top-1/2 -translate-y-1/2 text-[#FFA98F]/50"
-            />
-
-            <input
-              {...register("fullName", { required: "full-name is required" })}
-              type="text"
-              placeholder="Full name"
-              className="w-full h-16 rounded-2xl bg-[#3D1F1A] border border-[#C1443A]/30 pl-14 pr-5 text-white placeholder:text-[#FFA98F]/50 outline-none focus:border-[#F87060] focus:ring-4 focus:ring-[#F87060]/20 transition"
-            />
-            {errors.fullName && (
-              <p className="text-red-500 ">{errors.fullName.message}</p>
-            )}
+      <div className="max-w-6xl mx-auto px-6 py-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+          <div className=" lg:top-10">
+            <div className="bg-gradient-to-br from-[#0077B6]/20 to-[#020340] border border-[#0077B6]/30 rounded-3xl flex items-center justify-center p-12 aspect-square">
+              <img
+                src={product.image}
+                alt={product.title}
+                className="max-h-96 object-contain drop-shadow-2xl"
+              />
+            </div>
           </div>
 
-          <div className="relative">
-            <Mail
-              size={20}
-              className="absolute left-5 top-1/2 -translate-y-1/2 text-[#FFA98F]/50"
-            />
+          <div className="flex flex-col gap-6">
+            <span className="w-fit px-3 py-1 text-xs font-medium tracking-wide uppercase bg-[#020340] border border-[#0077B6]/30 rounded-full text-[#90E0EF]/70">
+              {product.category}
+            </span>
 
-            <input
-              {...register("email", { required: "email is required" })}
-              type="email"
-              placeholder="Email address"
-              className="w-full h-16 rounded-2xl bg-[#3D1F1A] border border-[#C1443A]/30 pl-14 pr-5 text-white placeholder:text-[#FFA98F]/50 outline-none focus:border-[#F87060] focus:ring-4 focus:ring-[#F87060]/20 transition"
-            />
-            {errors.email && (
-              <p className="text-red-500">{errors.email.message}</p>
+            <h1 className="text-4xl font-bold leading-tight tracking-tight">
+              {product.title}
+            </h1>
+
+            <div className="flex items-center gap-2">
+              <div className="flex text-lg">
+                {renderStars(product.rating?.rate)}
+              </div>
+              <span className="text-sm text-[#90E0EF]/60">
+                {product.rating?.rate} · {product.rating?.count} reviews
+              </span>
+            </div>
+
+            <div className="h-px bg-[#0077B6]/30" />
+
+            <div className="flex items-baseline gap-3">
+              <span className="text-4xl font-bold">${product.price}</span>
+              <span className="text-sm text-[#90E0EF]/40 line-through">
+                ${(product.price * 1.2).toFixed(2)}
+              </span>
+              <span className="text-sm font-medium text-emerald-400">
+                20% off
+              </span>
+            </div>
+
+            <p className="text-[#90E0EF]/70 leading-relaxed text-[15px]">
+              {product.description}
+            </p>
+
+            <div className="h-px bg-[#0077B6]/30" />
+
+            <div className="flex flex-col sm:flex-row gap-3 mt-2">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  addToCart(product.id);
+                }}
+                className="flex-1 px-6 py-4 bg-[#00B4D8] text-[#03045E] font-semibold rounded-full hover:brightness-110 transition"
+              >
+                Add to Cart
+              </button>
+              <button className="flex-1 px-6 py-4 border border-[#0077B6]/40 text-white font-semibold rounded-full hover:bg-[#0077B6]/10 transition">
+                Buy Now
+              </button>
+            </div>
+
+            <div className="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-[#0077B6]/30 text-xs text-[#90E0EF]/60">
+              <div className="flex flex-col items-center text-center gap-1">
+                <span className="text-[#00B4D8]">
+                  <Van />
+                </span>
+                Free delivery
+              </div>
+              <div className="flex flex-col items-center text-center gap-1">
+                <span className="text-[#00B4D8]">
+                  <Undo2 />
+                </span>
+                Easy returns
+              </div>
+              <div className="flex flex-col items-center text-center gap-1">
+                <span className="text-[#00B4D8]">
+                  <Lock />
+                </span>
+                Secure payment
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {(relatedLoading || relatedProducts.length > 0) && (
+          <div className="mt-20">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-2xl font-bold">You might also like</h2>
+              <span className="text-sm text-[#90E0EF]/50 capitalize">
+                {product.category}
+              </span>
+            </div>
+
+            {relatedLoading ? (
+              <Loader />
+            ) : (
+              <div className=" grid grid-cols-5 max-[769px]:grid-cols-2 max-[1024px]:grid-cols-4 max-[426px]:grid-cols-1 max-[426px]:p-0.5 gap-2.5 p-5scrollbar-thin">
+                {relatedProducts.map((item) => (
+                  <ProductCard key={item.id} product={item} />
+                ))}
+              </div>
             )}
           </div>
-
-          <div className="relative">
-            <Lock
-              size={20}
-              className="absolute left-5 top-1/2 -translate-y-1/2 text-[#FFA98F]/50"
-            />
-
-            <input
-              {...register("password", {
-                required: "password is required",
-                minLength: {
-                  value: 6,
-                  message: "minimum 6 letters",
-                },
-              })}
-              type={showPassword ? "text" : "password"}
-              placeholder="Password (min 6 chars)"
-              className="w-full h-16 rounded-2xl bg-[#3D1F1A] border border-[#C1443A]/30 pl-14 pr-14 text-white placeholder:text-[#FFA98F]/50 outline-none focus:border-[#F87060] focus:ring-4 focus:ring-[#F87060]/20 transition"
-            />
-
-            <button
-              type="button"
-              onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-5 top-1/2 -translate-y-1/2 text-[#FFA98F]/50 hover:text-[#F87060] transition"
-            >
-              {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-            </button>
-            {errors.password && (
-              <p className="text-red-500">{errors.password.message}</p>
-            )}
-          </div>
-
-          <div className="relative">
-            <Lock
-              size={20}
-              className="absolute left-5 top-1/2 -translate-y-1/2 text-[#FFA98F]/50"
-            />
-
-            <input
-              {...register("confirmPassword", {
-                required: "Confirm password is required",
-                validate: (value) =>
-                  value === password || "Passwords do not match",
-              })}
-              type={showConfirmPassword ? "text" : "password"}
-              placeholder="Confirm password"
-              className="w-full h-16 rounded-2xl bg-[#3D1F1A] border border-[#C1443A]/30 pl-14 pr-14 text-white placeholder:text-[#FFA98F]/50 outline-none focus:border-[#F87060] focus:ring-4 focus:ring-[#F87060]/20 transition"
-            />
-
-            <button
-              type="button"
-              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-              className="absolute right-5 top-1/2 -translate-y-1/2 text-[#FFA98F]/50 hover:text-[#F87060] transition"
-            >
-              {showConfirmPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-            </button>
-            {errors.confirmPassword && (
-              <p className=" text-red-500">{errors.confirmPassword.message}</p>
-            )}
-          </div>
-
-          <button className="w-full h-16 rounded-2xl bg-[#F87060] text-[#1F0F0C] text-2xl font-bold flex items-center justify-center gap-3 hover:scale-[1.02] transition-all duration-300">
-            Create Account
-            <ArrowRight size={24} />
-          </button>
-        </form>
-
-        <p className="text-center text-[#FFA98F]/60 mt-10 text-lg">
-          Already have an account?{" "}
-          <button
-            onClick={() => {
-              navigate("/");
-            }}
-            className="text-[#F87060] font-semibold hover:underline"
-          >
-            Sign in
-          </button>
-        </p>
+        )}
       </div>
     </div>
   );
-};
-
-export default RegisterPage;
+}

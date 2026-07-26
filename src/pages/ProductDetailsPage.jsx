@@ -69,11 +69,11 @@ export default function ProductDetailsPage() {
 
   if (error || !product) {
     return (
-      <div className="min-h-screen bg-black text-white flex flex-col items-center justify-center gap-4">
+      <div className="min-h-screen bg-[#1F0F0C] text-white flex flex-col items-center justify-center gap-4">
         <p className="text-xl text-red-400">{error || "Product not found"}</p>
         <button
           onClick={() => navigate(-1)}
-          className="px-6 py-2.5 bg-white text-black rounded-full font-medium hover:bg-gray-200 transition"
+          className="px-6 py-2.5 bg-[#F87060] text-[#1F0F0C] rounded-full font-medium hover:brightness-110 transition"
         >
           Go Back
         </button>
@@ -88,7 +88,7 @@ export default function ProductDetailsPage() {
         <span
           key={i}
           className={
-            i <= Math.round(rate) ? "text-yellow-400" : "text-gray-700"
+            i <= Math.round(rate) ? "text-yellow-400" : "text-[#C1443A]/40"
           }
         >
           ★
@@ -99,11 +99,11 @@ export default function ProductDetailsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-[#1F0F0C] text-white">
       <div className="max-w-6xl mx-auto px-6 pt-8">
         <button
           onClick={() => navigate(-1)}
-          className="text-sm text-gray-400 hover:text-white transition flex items-center gap-1"
+          className="text-sm text-[#FFA98F]/60 hover:text-white transition flex items-center gap-1"
         >
           ← Back to products
         </button>
@@ -112,7 +112,7 @@ export default function ProductDetailsPage() {
       <div className="max-w-6xl mx-auto px-6 py-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           <div className=" lg:top-10">
-            <div className="bg-gradient-to-br from-neutral-900 to-neutral-950 border border-neutral-800 rounded-3xl flex items-center justify-center p-12 aspect-square">
+            <div className="bg-gradient-to-br from-[#2A1712] to-[#1F0F0C] border border-[#C1443A]/30 rounded-3xl flex items-center justify-center p-12 aspect-square">
               <img
                 src={product.image}
                 alt={product.title}
@@ -122,7 +122,7 @@ export default function ProductDetailsPage() {
           </div>
 
           <div className="flex flex-col gap-6">
-            <span className="w-fit px-3 py-1 text-xs font-medium tracking-wide uppercase bg-neutral-900 border border-neutral-800 rounded-full text-gray-400">
+            <span className="w-fit px-3 py-1 text-xs font-medium tracking-wide uppercase bg-[#2A1712] border border-[#C1443A]/30 rounded-full text-[#FFA98F]/70">
               {product.category}
             </span>
 
@@ -134,16 +134,16 @@ export default function ProductDetailsPage() {
               <div className="flex text-lg">
                 {renderStars(product.rating?.rate)}
               </div>
-              <span className="text-sm text-gray-400">
+              <span className="text-sm text-[#FFA98F]/60">
                 {product.rating?.rate} · {product.rating?.count} reviews
               </span>
             </div>
 
-            <div className="h-px bg-neutral-800" />
+            <div className="h-px bg-[#C1443A]/30" />
 
             <div className="flex items-baseline gap-3">
               <span className="text-4xl font-bold">${product.price}</span>
-              <span className="text-sm text-gray-500 line-through">
+              <span className="text-sm text-[#FFA98F]/40 line-through">
                 ${(product.price * 1.2).toFixed(2)}
               </span>
               <span className="text-sm font-medium text-emerald-400">
@@ -151,11 +151,11 @@ export default function ProductDetailsPage() {
               </span>
             </div>
 
-            <p className="text-gray-400 leading-relaxed text-[15px]">
+            <p className="text-[#FFA98F]/70 leading-relaxed text-[15px]">
               {product.description}
             </p>
 
-            <div className="h-px bg-neutral-800" />
+            <div className="h-px bg-[#C1443A]/30" />
 
             <div className="flex flex-col sm:flex-row gap-3 mt-2">
               <button
@@ -163,30 +163,30 @@ export default function ProductDetailsPage() {
                   e.stopPropagation();
                   addToCart(product.id);
                 }}
-                className="flex-1 px-6 py-4 bg-white text-black font-semibold rounded-full hover:bg-gray-200 transition"
+                className="flex-1 px-6 py-4 bg-[#F87060] text-[#1F0F0C] font-semibold rounded-full hover:brightness-110 transition"
               >
                 Add to Cart
               </button>
-              <button className="flex-1 px-6 py-4 border border-neutral-700 text-white font-semibold rounded-full hover:bg-neutral-900 transition">
+              <button className="flex-1 px-6 py-4 border border-[#C1443A]/40 text-white font-semibold rounded-full hover:bg-[#C1443A]/10 transition">
                 Buy Now
               </button>
             </div>
 
-            <div className="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-neutral-800 text-xs text-gray-400">
+            <div className="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-[#C1443A]/30 text-xs text-[#FFA98F]/60">
               <div className="flex flex-col items-center text-center gap-1">
-                <span className="text-lg">
+                <span className="text-[#F87060]">
                   <Van />
                 </span>
                 Free delivery
               </div>
               <div className="flex flex-col items-center text-center gap-1">
-                <span className="text-lg">
+                <span className="text-[#F87060]">
                   <Undo2 />
                 </span>
                 Easy returns
               </div>
               <div className="flex flex-col items-center text-center gap-1">
-                <span className="text-lg">
+                <span className="text-[#F87060]">
                   <Lock />
                 </span>
                 Secure payment
@@ -199,7 +199,7 @@ export default function ProductDetailsPage() {
           <div className="mt-20">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-2xl font-bold">You might also like</h2>
-              <span className="text-sm text-gray-500 capitalize">
+              <span className="text-sm text-[#FFA98F]/50 capitalize">
                 {product.category}
               </span>
             </div>
@@ -207,7 +207,7 @@ export default function ProductDetailsPage() {
             {relatedLoading ? (
               <Loader />
             ) : (
-              <div className="flex gap-5 overflow-x-auto pb-4 -mx-6 px-6 scrollbar-thin">
+              <div className=" grid grid-cols-5 max-[769px]:grid-cols-2 max-[1024px]:grid-cols-4 max-[426px]:grid-cols-1 max-[426px]:p-0.5 gap-2.5 p-5scrollbar-thin">
                 {relatedProducts.map((item) => (
                   <ProductCard key={item.id} product={item} />
                 ))}

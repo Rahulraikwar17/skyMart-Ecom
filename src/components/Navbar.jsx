@@ -33,8 +33,8 @@ const Navbar = () => {
 
   const navLinkClass = ({ isActive }) =>
     isActive
-      ? "text-sm font-medium text-[#F87060] relative border-b border-[#F87060]"
-      : "text-sm font-medium text-[#FFA98F]/70 hover:text-white transition-colors";
+      ? "text-sm font-medium text-[#F87060] relative text-center border border-[#F87060 rounded-2xl"
+      : "text-sm font-medium text-[#FFA98F]/70 hover:text-white transition-colors text-center";
 
   return (
     <nav className="relative max-w-full bg-[#3D1F1A] px-4 sm:px-6 py-4 flex items-center justify-between gap-4 lg:gap-8 border-b border-[#C1443A]/30 shadow-[0_0_25px_rgba(248,112,96,0.18)]">
@@ -45,7 +45,7 @@ const Navbar = () => {
         <div className="bg-[#F87060] rounded-md p-1.5 flex items-center justify-center">
           <Zap className="w-4 h-4 text-[#3D1F1A]" fill="#3D1F1A" />
         </div>
-        <span className="text-white font-bold text-lg">
+        <span className="text-white font-bold text-lg ">
           Sky<span className="text-[#F87060]">Mart</span>
         </span>
       </div>
@@ -70,7 +70,7 @@ const Navbar = () => {
           />
 
           {totalItems > 0 && (
-            <span className="absolute -top-2 -right-2 bg-[#F87060] text-[#3D1F1A] text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+            <span className="absolute -top-2 -right-2 bg-[#F87060] text-center text-[#3D1F1A] text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
               {totalItems}
             </span>
           )}
@@ -103,7 +103,7 @@ const Navbar = () => {
       </div>
 
       {menuOpen && (
-        <div className="absolute top-full left-0 w-full lg:hidden bg-[#3D1F1A] border-b border-[#C1443A]/30 shadow-[0_10px_25px_rgba(0,0,0,0.35)] z-50">
+        <div className="absolute top-full left-0 w-full lg:hidden bg-[#3D1F1A] shadow-[0_10px_25px_rgba(0,0,0,0.35)] z-50">
           <ul className="flex flex-col p-4 gap-4">
             <NavLink
               to={"/main"}
