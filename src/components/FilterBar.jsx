@@ -54,7 +54,7 @@ export default function FilterBar({
             className="flex-1 lg:flex-none bg-white/10 backdrop-blur-md text-white text-sm rounded-full px-4 sm:px-5 py-2.5 lg:min-w-[220px] border border-transparent hover:border-[#F87060] focus:border-[#F87060] outline-none cursor-pointer"
           >
             {categoryOptions.map((item) => (
-              <option key={item.value} value={item.value} className="bg-[#C1443A]/50 text-white">
+              <option key={item.value} value={item.value} className="bg-[#F87060] text-white">
                 {item.label}
               </option>
             ))}
@@ -66,7 +66,7 @@ export default function FilterBar({
             className="flex-1 lg:flex-none bg-white/10 backdrop-blur-md text-white text-sm rounded-full px-4 sm:px-5 py-2.5 lg:min-w-[190px] border border-transparent hover:border-[#F87060] focus:border-[#F87060] outline-none cursor-pointer"
           >
             {sortOptions.map((item) => (
-              <option key={item.value} value={item.value} className="bg-[#C1443A]/50 text-white">
+              <option key={item.value} value={item.value} className="bg-[#F87060] text-white">
                 {item.label}
               </option>
             ))}

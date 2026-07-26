@@ -20,8 +20,8 @@ const HomeWelcomeCard = () => {
           : "Good Evening";
 
   return (
-    <section className="w-full group px-3 max-[769px]:p-1.5 py-5">
-      <div className="relative overflow-hidden rounded-[30px] border border-[#C1443A]/30 bg-[#3D1F1A]">
+    <section className="w-full group pb-1.5">
+      <div className="relative overflow-hidden border border-[#C1443A]/30 bg-[#3D1F1A]">
 
         <video
           autoPlay

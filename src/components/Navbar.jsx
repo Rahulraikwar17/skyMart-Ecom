@@ -83,7 +83,7 @@ const Navbar = () => {
             {loggedInUser.fullName[0].toUpperCase()}
           </div>
           <div className="hidden md:block leading-tight">
-            <p className="text-white font-extralight font-medium ">
+            <p className="text-white font-light font-medium ">
               {userName}
             </p>
           </div>
@@ -132,7 +132,7 @@ const Navbar = () => {
               <div className="w-9 h-9 rounded-full text-white flex justify-center text-lg font-bold items-center bg-[#C1443A] shrink-0">
                 {loggedInUser.fullName[0].toUpperCase()}
               </div>
-              <p className="text-white font-medium">{userName}</p>
+              <p className="text-white font-light font-medium">{userName}</p>
               <LogOut
                 onClick={handleLogout}
                 className="w-4 h-4 ml-auto text-[#FFA98F]/60 hover:text-[#F87060] cursor-pointer transition-colors"

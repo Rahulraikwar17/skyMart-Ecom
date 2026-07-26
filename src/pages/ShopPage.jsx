@@ -64,7 +64,7 @@ const ShopPage = () => {
   };
 
   return (
-    <div>
+    <div className="bg-[#3D1F1A]">
       <FilterBar
         search={search}
         setSearch={setSearch}
@@ -80,7 +80,7 @@ const ShopPage = () => {
       ) : filteredProducts.length === 0 ? (
         <NoProduct handleClearFilters={handleClearFilters} />
       ) : (
-        <div className="grid grid-cols-5 max-[769px]:grid-cols-2 max-[1024px]:grid-cols-4 max-[426px]:grid-cols-1 gap-2.5 p-5">
+        <div className=" grid grid-cols-5 max-[769px]:grid-cols-2 max-[1024px]:grid-cols-4 max-[426px]:grid-cols-1 max-[426px]:p-0.5 gap-2.5 p-5">
           {filteredProducts.map((val) => {
             return <ProductCard key={val.id} product={val} />;
           })}
