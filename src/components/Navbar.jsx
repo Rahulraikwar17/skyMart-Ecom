@@ -33,7 +33,7 @@ const Navbar = () => {
 
   const navLinkClass = ({ isActive }) =>
     isActive
-      ? "text-sm font-medium text-[#F87060] relative text-center border border-[#F87060 rounded-2xl"
+      ? "text-sm font-medium text-[#F87060] relative text-center border-b"
       : "text-sm font-medium text-[#FFA98F]/70 hover:text-white transition-colors text-center";
 
   return (
@@ -83,9 +83,7 @@ const Navbar = () => {
             {loggedInUser.fullName[0].toUpperCase()}
           </div>
           <div className="hidden md:block leading-tight">
-            <p className="text-white font-light font-medium ">
-              {userName}
-            </p>
+            <p className="text-white font-light font-medium ">{userName}</p>
           </div>
 
           <LogOut

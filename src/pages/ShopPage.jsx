@@ -64,7 +64,7 @@ const ShopPage = () => {
   };
 
   return (
-    <div className="bg-[#3D1F1A]">
+    <div className="bg-[#3D1F1A] ">
       <FilterBar
         search={search}
         setSearch={setSearch}

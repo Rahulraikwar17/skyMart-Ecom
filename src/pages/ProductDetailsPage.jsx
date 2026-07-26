@@ -5,6 +5,7 @@ import Loader from "../components/Loader";
 import ProductCard from "../components/ProductCard";
 import { CartContext } from "../context/CartContext";
 import { Lock, Undo2, Van } from "lucide-react";
+import { toast } from "react-toastify";
 
 export default function ProductDetailsPage() {
   const { id } = useParams();
@@ -167,7 +168,14 @@ export default function ProductDetailsPage() {
               >
                 Add to Cart
               </button>
-              <button className="flex-1 px-6 py-4 border border-[#C1443A]/40 text-white font-semibold rounded-full hover:bg-[#C1443A]/10 transition">
+              <button
+                onClick={() => {
+                  toast.error(
+                    "🚧 This is a demo store. Orders are currently disabled.",
+                  );
+                }}
+                className="flex-1 px-6 py-4 border border-[#C1443A]/40 text-white font-semibold rounded-full hover:bg-[#C1443A]/10 transition"
+              >
                 Buy Now
               </button>
             </div>
